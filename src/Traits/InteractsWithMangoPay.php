@@ -20,9 +20,18 @@ use MangoPay\Wallet;
 trait InteractsWithMangoPay {
     public $mangoPayApi;
 
-    public function __construct(MangoPayApi $mangoPayApi)
+    public function initializeInteractsWithMangoPay()
     {
-        $this->mangoPayApi = $mangoPayApi;
+        $this->fillable[] = 'first_name';
+        $this->fillable[] = 'last_name';
+        $this->fillable[] = 'birthday';
+        $this->fillable[] = 'mangopay_id';
+        $this->fillable[] = 'wallet_id';
+        $this->fillable[] = 'email';
+
+        $this->fillable = array_unique($this->fillable);
+
+        $this->mangoPayApi = app(MangoPayApi::class);
     }
 
     public function addToMangoPay(?string $walletDescription, ?string $walletCurrency) {

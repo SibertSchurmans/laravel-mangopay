@@ -13,6 +13,12 @@ use MangoPay\MangoPayApi;
 class MangoPayServiceProvider extends ServiceProvider
 {
     /**
+     * The Mangopay URLs used by the API
+     */
+    public const BASE_URL_SANDBOX = 'https://api.sandbox.mangopay.com';
+    public const BASE_URL_PRODUCTION = 'https://api.mangopay.com';
+
+    /**
      * Bootstrap any package services.
      *
      * @return void
@@ -40,7 +46,7 @@ class MangoPayServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(MangoPayApi::class, function ($app) {
-            $config = $app['config']['services.mangopay'];
+            $config = $app['config']['mangopay'];
 
             if (!$clientId = Arr::get($config, 'key')) {
                 throw new InvalidArgumentException('Mangopay key not configured');
