@@ -15,7 +15,7 @@ This package makes it easier to connect MangoPay to Laravel. The ServiceProvider
 2.  Publish the configuration and migration file:
 
     ```sh
-    php artisan vendor:publish --provider="SibertSchurmans\LaravelMangopay\ServiceProvider"
+    php artisan vendor:publish --provider="SibertSchurmans\LaravelMangoPay\MangoPayServiceProvider"
     ```
 
 3.  Finally, migrate to add the required columns to the User model:
