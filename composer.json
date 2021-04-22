@@ -1,0 +1,31 @@
+{
+    "name": "sibertschurmans/laravel-mangopay",
+    "description": "Laravel wrapper for Mangopay",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sibert Schurmans",
+            "email": "sibert.schurmans@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "laravel/laravel": "^7.0|^8.0",
+        "mangopay/php-sdk-v2": "^3.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "SibertSchurmans\\LaravelMangoPay\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SibertSchurmans\\LaravelMangoPay\\MangoPayServiceProvider"
+            ]
+        }
+    }
+}
