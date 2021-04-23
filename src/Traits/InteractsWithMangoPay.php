@@ -20,6 +20,24 @@ use MangoPay\Wallet;
 trait InteractsWithMangoPay {
     public $mangoPayApi;
 
+    public static function bootInteractsWithMangoPay() {
+        static::saved(function ($model) {
+            $mangoUser = $this->mangoPayApi->Users->GetNatural($model->mangopay_id);
+
+            $mangoUser->PersonType = "NATURAL";
+            $mangoUser->FirstName = $model->first_name;
+            $mangoUser->LastName = $model->last_name;
+            $mangoUser->Birthday = $model->birthday;
+            $mangoUser->Nationality = $model->nationality;
+            $mangoUser->CountryOfResidence = $model->country_of_residence;
+            $mangoUser->Email = $model->email;
+
+            $this->mangoPayApi->Users->Update($mangoUser);
+        });
+
+        parent::boot();
+    }
+
     public function initializeInteractsWithMangoPay()
     {
         $this->fillable[] = 'first_name';
@@ -58,23 +76,6 @@ trait InteractsWithMangoPay {
         $this->save();
 
         return $mangoUser;
-    }
-
-    /**
-     * Update Mangopay User
-     */
-    public function syncWithMangoPay() {
-        $mangoUser = $this->mangoPayApi->Users->GetNatural($this->mangopay_id);
-
-        $mangoUser->PersonType = "NATURAL";
-        $mangoUser->FirstName = $this->first_name;
-        $mangoUser->LastName = $this->last_name;
-        $mangoUser->Birthday = $this->birthday;
-        $mangoUser->Nationality = $this->nationality;
-        $mangoUser->CountryOfResidence = $this->country_of_residence;
-        $mangoUser->Email = $this->email;
-
-        return $this->mangoPayApi->Users->Update($mangoUser);
     }
 
     /**
