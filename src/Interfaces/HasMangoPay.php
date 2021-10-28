@@ -12,6 +12,8 @@ interface HasMangoPay
      */
     public function addToMangoPay(?string $walletDescription, ?string $walletCurrency);
 
+    public function syncWithMangoPay();
+
     public function addFunds(int $amount, string $cardType, string $redirectUrl, ?string $currency, ?string $culture);
 
     public function asMangoPayUser();

@@ -67,8 +67,8 @@ class MangoPayServiceProvider extends ServiceProvider
             $mangoPayApi = new MangoPayApi();
             $mangoPayApi->Config->ClientId = $clientId;
             $mangoPayApi->Config->ClientPassword = $clientPassword;
-            $mangoPayApi->Config->BaseUrl = $this->getURL($env);
-            $mangoPayApi->Config->TemporaryFolder = Arr::get($config, 'directories')[$env];
+            $mangoPayApi->Config->BaseUrl = $this->getURL(Arr::get($config, 'env'));
+            $mangoPayApi->Config->TemporaryFolder = Arr::get($config, 'directories')[Arr::get($config, 'env')];
 
             return $mangoPayApi;
         });
