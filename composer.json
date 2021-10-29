@@ -20,5 +20,12 @@
         "psr-4": {
             "SibertSchurmans\\LaravelMangoPay\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SibertSchurmans\\LaravelMangoPay\\MangoPayServiceProvider"
+            ]
+        }
     }
 }
