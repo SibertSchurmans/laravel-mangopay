@@ -10,7 +10,7 @@ interface HasMangoPay
      * Adds the model to Mango Pay and creates a user with a wallet
      * @return null
      */
-    public function addToMangoPay(?string $walletDescription, ?string $walletCurrency);
+    public function addToMangoPay(string $ownerAddressLine1, string $ownerAddressCity, string $ownerAddressPostalCode, string $iban, string $bic, ?string $walletDescription, ?string $walletCurrency);
 
     public function syncWithMangoPay();
 
@@ -23,4 +23,6 @@ interface HasMangoPay
     public function makeDirectPayment(int $amount, int $recipientWallet, string $cardType, string $redirectUrl, ?string $currency);
 
     public function wallet();
+
+    public function payOut(int $amount, ?string $currency = null);
 }
